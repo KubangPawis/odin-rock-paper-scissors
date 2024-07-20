@@ -18,7 +18,7 @@ function getHumanChoice() {
     let humanPrompt;
 
     while (!choiceArr.includes(humanPrompt)) {
-        humanPrompt = prompt("ROCK, PAPER, or SCISSORS?");
+        humanPrompt = prompt("ROCK, PAPER, or SCISSORS?").trim();
         humanPrompt = humanPrompt.charAt(0).toUpperCase() + humanPrompt.slice(1).toLowerCase();
 
         if (!choiceArr.includes(humanPrompt)) {
