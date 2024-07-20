@@ -1,8 +1,6 @@
 function getComputerChoice() {
     const choiceArr = ["Rock", "Paper", "Scissors"];
     const randomizer = Math.floor(Math.random() * choiceArr.length);
-    console.log(`Randomizer Value: ${randomizer}`);
-
     switch (randomizer) {
         case 0:
             return "Rock";
