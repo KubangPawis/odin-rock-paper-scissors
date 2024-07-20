@@ -31,6 +31,8 @@ function getHumanChoice() {
 }
 
 const NUMBER_OF_ROUNDS = 5;
+let humanScore = 0;
+let computerScore = 0;
 
 for (let i = 0; i < NUMBER_OF_ROUNDS; i++) {
     const computerChoice = getComputerChoice();
