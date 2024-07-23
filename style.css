@@ -4,13 +4,16 @@
     box-sizing: border-box;
 }
 
-.wrapper {
-    width: max-content;
-    margin: auto;
-    padding: 4em 0;
+body {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
+}
+
+.wrapper {
+    max-width: 80%;
+    margin: -6rem auto 0;
+    padding: 4em 0;
 }
 
 .wrapper > * {
@@ -19,8 +22,41 @@
 
 .game-heading {
     font-size: 4rem;
+    margin: 0.75rem 0;
+    text-align: center;
 }
 
-.game-subheading {
-    font-size: 2em;
+.content-wrapper {
+    display: flex;
+    gap: 12rem;
+}
+
+.button-container > button {
+    background-color: honeydew;
+    font-size: 1.5rem;
+    padding: 1em 2em;
+}
+
+#player-score-container,
+#computer-score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#player-score-container > p,
+#computer-score-container > p {
+    font-size: 4rem;
+}
+
+.round-counter-container {
+    color: #333333;
+    margin: 0.75rem 0 3rem;
+    text-align: center;
+}
+
+.round-result-container {
+    font-size: 1.125rem;
+    text-align: center;
+    height: 1rem;
 }

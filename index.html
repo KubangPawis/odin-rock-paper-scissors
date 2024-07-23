@@ -11,7 +11,27 @@
 <body>
     <div class="wrapper">
         <h1 class="game-heading">Rock - Paper - Scissors</h1>
-        <p class="game-subheading">To view the game state, please check the browser console.</p>
+        <div class="round-counter-container">
+            <h2>Round #1</h2>
+        </div>
+        <div class="content-wrapper">
+            <div id="player-score-container">
+                <h2>Player</h2>
+                <p>0</p>
+            </div>
+            <div class="button-container">
+                <button class="game-button" id="button-rock">Rock</button>
+                <button class="game-button" id="button-paper">Paper</button>
+                <button class="game-button" id="button-scissors">Scissors</button>
+            </div>
+            <div id="computer-score-container">
+                <h2>Computer</h2>
+                <p>0</p>
+            </div>
+        </div>
+        <div class="round-result-container">
+            <p></p>
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>

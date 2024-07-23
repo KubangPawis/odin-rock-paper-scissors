@@ -13,73 +13,75 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    const choiceArr = ["Rock", "Paper", "Scissors"];
-    let humanPrompt;
-
-    while (!choiceArr.includes(humanPrompt)) {
-        humanPrompt = prompt("ROCK, PAPER, or SCISSORS?").trim();
-        humanPrompt = humanPrompt.charAt(0).toUpperCase() + humanPrompt.slice(1).toLowerCase();
-
-        if (!choiceArr.includes(humanPrompt)) {
-            alert("Invalid answer! Please try again...");
-        }
-    }
-    return humanPrompt;
-}
-
 function playRound(humanChoice, computerChoice) {
+    const roundResultUpdater = document.querySelector(".round-result-container > p");
+
     if (humanChoice === "Rock" && computerChoice === "Scissors") {
         humanScore++;
-        alert("You Win! Rock beats Scissors.");
-        return "You Win! Rock beats Scissors.";
+        roundResultUpdater.textContent = "You Win! Rock beats Scissors.";
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
         humanScore++;
-        alert("You Win! Scissors beats Paper.");
-        return "You Win! Scissors beats Paper."
+        roundResultUpdater.textContent = "You Win! Scissors beats Paper."
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         humanScore++;
-        alert("You Win! Paper beats Rock.");
-        return "You Win! Paper beats Rock.";
+        roundResultUpdater.textContent = "You Win! Paper beats Rock.";
     } else if (humanChoice === computerChoice) {
-        alert(`Draw! You both picked ${humanChoice}`);
-        return `Draw! You both picked ${humanChoice}`;
+        roundResultUpdater.textContent = `Draw! You both picked ${humanChoice}`;
     } else {
         computerScore++;
-        alert(`You Lose! ${humanChoice} loses to ${computerChoice}`);
-        return `You Lose! ${humanChoice} loses to ${computerChoice}`;
+        roundResultUpdater.textContent = `You Lose! ${humanChoice} loses to ${computerChoice}`;
     }
 }
 
 function playGame() {
-    alert("~ LET'S PLAY ROCK-PAPER-SCISSORS ~");
+    const roundCounter = document.querySelector(".round-counter-container > h2");
+    const playerScoreTracker = document.querySelector("#player-score-container > p");
+    const computerScoreTracker = document.querySelector("#computer-score-container > p");
+    const computerChoice = getComputerChoice();
 
-    for (let i = 0; i < NUMBER_OF_ROUNDS; i++) {
-        const computerChoice = getComputerChoice();
-        const humanChoice = getHumanChoice();
+    roundCount++;
+    console.log(`ROUND #${roundCount}`);
+    console.log("Computer: " + computerChoice);
+    console.log("Human: " + humanChoice);
 
-        console.log(`ROUND #${i + 1}`);
-        console.log("Computer: " + computerChoice);
-        console.log("Human: " + humanChoice);
+    playRound(humanChoice, computerChoice);
+    roundCounter.textContent = `Round #${roundCount}`;
+    playerScoreTracker.textContent = humanScore;
+    computerScoreTracker.textContent = computerScore;
 
-        const roundResult = playRound(humanChoice, computerChoice);
-        console.log(roundResult);
-    }
-
-    if (humanScore > computerScore) {
-        alert("CONGRATULATIONS! You are the Winner.");
+    if (humanScore === 5) {
         console.log("CONGRATULATIONS! You are the Winner.");
-    } else if (humanScore < computerScore) {
-        alert("GAME OVER! Better luck next time.");
+        alert("CONGRATULATIONS! You are the Winner.");
+    } else if (computerScore === 5) {
         console.log("GAME OVER! Better luck next time.");
-    } else {
-        alert("You DREW! Play another game?");
-        console.log("You DREW! Play another game?");
+        alert("GAME OVER! Better luck next time.");
     }
 }
 
-const NUMBER_OF_ROUNDS = 5;
+function initializeDOM() {
+    const choiceButtons = document.querySelectorAll(".button-container > button");
+    choiceButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            const targetButton = e.target;
+            switch (targetButton.id) {
+                case "button-rock":
+                    humanChoice = "Rock";
+                    break;
+                case "button-paper":
+                    humanChoice = "Paper";
+                    break;
+                case "button-scissors":
+                    humanChoice = "Scissors";
+                    break;
+            }
+            playGame();
+        });
+    });
+}
+
+let roundCount = 1;
 let humanScore = 0;
 let computerScore = 0;
+let humanChoice;
 
-playGame();
+initializeDOM();
